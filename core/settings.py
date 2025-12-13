@@ -42,6 +42,8 @@ INSTALLED_APPS = [
 
     "rest_framework",
     'rest_framework_simplejwt',
+    'drf_spectacular',
+
 
     "authentication",
     "customers",
@@ -84,8 +86,12 @@ WSGI_APPLICATION = "core.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "parking_service",
+        "USER": "postgres",
+        "PASSWORD": "postgres",
+        "HOST": "parking_db",
+        "PORT": "5432",
     }
 }
 
@@ -281,5 +287,12 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
-    'DEFAULT_FILTER_BACKENDS': ['dj_rql.drf.RQLFilterBackend']
+    'DEFAULT_FILTER_BACKENDS': ['dj_rql.drf.RQLFilterBackend'],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Parking Service API',
+    'DESCRIPTION': 'API do Parking Service',
+    'VERSION': '1.0.0',
 }
