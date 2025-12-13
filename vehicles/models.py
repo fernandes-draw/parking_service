@@ -2,6 +2,7 @@ from django.db import models
 
 from customers.models import Customer
 
+
 class VehicleType(models.Model):
     name = models.CharField(
         max_length=50,
@@ -28,7 +29,8 @@ class VehicleType(models.Model):
 
     def __str__(self):
         return self.name
-    
+
+
 class Vehicle(models.Model):
     vehicle_type = models.ForeignKey(
         VehicleType,
@@ -84,4 +86,3 @@ class Vehicle(models.Model):
 
     def __str__(self):
         return self.license_plate
-    

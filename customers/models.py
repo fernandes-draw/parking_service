@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Customer(models.Model):
     user = models.OneToOneField(
         User,
@@ -12,7 +13,7 @@ class Customer(models.Model):
     )
     name = models.CharField(
         max_length=100,
-        verbose_name="Nome"    
+        verbose_name="Nome"
     )
     cpf = models.CharField(
         max_length=15,
@@ -36,9 +37,8 @@ class Customer(models.Model):
     )
 
     class Meta:
-        verbose_name="Cliente"
-        verbose_name_plural="Clientes"
+        verbose_name = "Cliente"
+        verbose_name_plural = "Clientes"
 
     def __str__(self):
         return self.name
-    

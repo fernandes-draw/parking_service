@@ -5,4 +5,4 @@ class ParkingConfig(AppConfig):
     name = "parking"
 
     def ready(self):
-        import parking.signals
+        import parking.signals  # noqa: F401
