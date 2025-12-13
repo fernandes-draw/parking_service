@@ -3,17 +3,20 @@ from rest_framework import viewsets
 from vehicles.models import VehicleType, Vehicle
 from vehicles.serializers import VehiclesTypeSerializer, VehiclesSerializer
 from rest_framework.permissions import DjangoModelPermissions, IsAdminUser
+from vehicles.filters import VehicleTypeFilterClass, VehicleFilterClass
 
 
 class VehiclesTypeViewSet(viewsets.ModelViewSet):
     queryset = VehicleType.objects.all()
     serializer_class = VehiclesTypeSerializer
+    rql_filter_class = VehicleTypeFilterClass
     permission_classes = [DjangoModelPermissions, IsAdminUser]
 
 
 class VehiclesViewSet(viewsets.ModelViewSet):
     queryset = Vehicle.objects.all()
     serializer_class = VehiclesSerializer
+    rql_filter_class = VehicleFilterClass
     permission_classes = [DjangoModelPermissions, IsOwnerOfVehicleOrRecord]
 
     def get_queryset(self):
